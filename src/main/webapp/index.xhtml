@@ -6,6 +6,8 @@
 >
 <h:head/>
 <h:body>
+<!--    #{pirmasKomponentas.sakykLabas()}-->
+    #{pirmasKomponentas.getClass().name}
     <h2>Teams:</h2>
     <ol>
         <ui:repeat value="#{teams.allTeams}" var="team">
