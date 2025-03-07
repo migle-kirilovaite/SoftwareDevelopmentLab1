@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>lt.mif.vu</groupId>
-    <artifactId>java-ee-practice</artifactId>
+    <groupId>com.example</groupId>
+    <artifactId>Lab1SWDev</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>Lab1SWDev</name>
     <packaging>war</packaging>
-
-    <name>java-ee-practice Maven Webapp</name>
-    <url>http://www.example.com</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -50,7 +48,7 @@
     </dependencies>
 
     <build>
-        <finalName>java-ee-practice</finalName>
+        <finalName>lab1</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -73,7 +71,7 @@
                         <dependency>
                             <groupId>com.h2database</groupId>
                             <artifactId>h2</artifactId>
-                            <version>1.4.196</version>
+                            <version>1.4.200</version>
                         </dependency>
                     </dependencies>
                 </plugin>
