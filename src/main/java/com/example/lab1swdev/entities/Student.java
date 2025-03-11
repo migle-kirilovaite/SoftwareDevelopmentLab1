@@ -18,8 +18,7 @@ public class Student {
     @Basic(optional = false)
     private String lastName;
     @ManyToOne
-    private Group group;
-
+    private StudyGroup group;
     @ManyToMany
     private List<ElectiveCourse> electiveCourses;
 }

@@ -8,8 +8,7 @@ import java.util.List;
 
 @Entity
 @Setter @Getter
-@Table(name = "groups")
-public class Group {
+public class StudyGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
