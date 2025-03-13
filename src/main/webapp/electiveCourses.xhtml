@@ -1,0 +1,28 @@
+<!-- electiveCourseList.xhtml -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h2>Elective Courses</h2>
+
+    <h:form>
+        <h:inputText value="#{electiveCourseList.electiveCourseToCreate.name}" required="true" />
+        <h:commandButton value="Add New Course" action="#{electiveCourseList.createCourse}" />
+    </h:form>
+
+    <h3>Existing Courses:</h3>
+    <ol>
+        <ui:repeat value="#{electiveCourseList.allElectiveCourses}" var="course">
+            <li>
+                <h:link value="#{course.name}" outcome="editElectiveCourse">
+                    <f:param name="courseId" value="#{course.id}" />
+                </h:link>
+            </li>
+        </ui:repeat>
+    </ol>
+    <h:link outcome="index" value="Back to study groups page"/>
+</h:body>
+</html>
