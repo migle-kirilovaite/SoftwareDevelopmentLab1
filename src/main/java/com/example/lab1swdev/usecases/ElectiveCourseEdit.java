@@ -8,10 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
-import javax.faces.context.SessionMap;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -45,32 +42,48 @@ public class ElectiveCourseEdit implements Serializable {
         loadSelectedCourse();
     }
 
-    // Load the selected course based on the courseId
     @Transactional
     public void loadSelectedCourse() {
         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        String courseId = params.get("courseId");  // Get the courseId parameter
-        System.out.println("Course ID: " + courseId);
+        String courseId = params.get("courseId");
         if (courseId != null) {
-            this.selectedCourse = electiveCourseDAO.findOne(Integer.valueOf(courseId)); // Retrieve the full course details
+            this.selectedCourse = electiveCourseDAO.findOne(Integer.valueOf(courseId));
         }
     }
 
-    // Add a student to the selected course
     @Transactional
     public void addStudentToCourse() {
-        System.out.println("Course ID: " + selectedCourse.getId());
-        // Retrieve the selected course
+        if (studentToAddId == null || selectedCourse == null) {
+            return;
+        }
+
         ElectiveCourse course = electiveCourseDAO.findOne(selectedCourse.getId());
-        // Retrieve the student to add
         Student student = studentsDao.findOne(studentToAddId);
-        // Add the student to the course's student list
-        course.getStudents().add(student);
-        // Add the course to the student's elective courses list
-        student.getElectiveCourses().add(course);
-        // Merge the updated course and student entities
+
+        if (!course.getStudents().contains(student)) {
+            course.getStudents().add(student);
+            student.getElectiveCourses().add(course);
+        }
+
         electiveCourseDAO.merge(course);
-        studentsDao.merge(student);
     }
+
+    @Transactional
+    public void removeStudentFromCourse(Integer studentId) {
+        if (studentId == null || selectedCourse == null) {
+            return;
+        }
+
+        ElectiveCourse course = electiveCourseDAO.findOne(selectedCourse.getId());
+        Student student = studentsDao.findOne(studentId);
+
+        if (course.getStudents().contains(student)) {
+            course.getStudents().remove(student);
+            student.getElectiveCourses().remove(course);
+        }
+
+        electiveCourseDAO.merge(course);
+    }
+
 
 }

@@ -10,6 +10,7 @@
 
     <!-- Form to add a new student to the course -->
     <h:form>
+        <!-- Form to add a new student to the course -->
         <h:selectOneMenu value="#{electiveCourseEdit.studentToAddId}">
             <f:selectItems value="#{electiveCourseEdit.allStudents}" var="student" itemValue="#{student.id}" itemLabel="#{student.name} #{student.lastName}" />
         </h:selectOneMenu>
@@ -17,24 +18,31 @@
                          actionListener="#{electiveCourseEdit.addStudentToCourse}"
                          action="#{'editElectiveCourse?faces-redirect=true&amp;courseId='.concat(electiveCourseEdit.selectedCourse.id)}"
         />
-    </h:form>
 
-    <!-- Section to display students enrolled in the course -->
-    <h2>Enrolled Students in  #{electiveCourseEdit.selectedCourse.name}</h2>
-    <h:dataTable value="#{electiveCourseEdit.selectedCourse.students}" var="student">
-        <h:column>
-            <f:facet name="header">ID</f:facet>
-            #{student.id}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Name</f:facet>
-            #{student.name}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Last Name</f:facet>
-            #{student.lastName}
-        </h:column>
-    </h:dataTable>
+        <!-- Section to display students enrolled in the course -->
+        <h2>Enrolled Students in #{electiveCourseEdit.selectedCourse.name}</h2>
+        <h:dataTable id="studentsTable" value="#{electiveCourseEdit.selectedCourse.students}" var="student">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{student.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                #{student.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Last Name</f:facet>
+                #{student.lastName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Actions</f:facet>
+                <h:commandButton value="Delete"
+                                 actionListener="#{electiveCourseEdit.removeStudentFromCourse(student.id)}"
+                                 action="#{'editElectiveCourse?faces-redirect=true&amp;courseId='.concat(electiveCourseEdit.selectedCourse.id)}"
+                />
+            </h:column>
+        </h:dataTable>
+    </h:form>
 
     <h:link outcome="electiveCourses" value="Back to course list"/>
 </h:body>
