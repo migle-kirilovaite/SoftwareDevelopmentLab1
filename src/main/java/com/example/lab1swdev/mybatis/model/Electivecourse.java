@@ -1,5 +1,8 @@
 package com.example.lab1swdev.mybatis.model;
 
+import java.util.List;
+
+
 public class Electivecourse {
     /**
      *
@@ -27,6 +30,8 @@ public class Electivecourse {
      *
      * @mbg.generated Sun Mar 16 10:54:11 EET 2025
      */
+    private List<Student> students; // Add this line
+
     public Integer getId() {
         return id;
     }
@@ -66,4 +71,8 @@ public class Electivecourse {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<Student> getStudents() { return students; }
+
+    public void setStudents(List<Student> students) { this.students = students; }
 }

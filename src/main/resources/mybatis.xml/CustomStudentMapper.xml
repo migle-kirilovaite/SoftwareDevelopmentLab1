@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lab1swdev.mybatis.dao.CustomStudentMapper">
+    <resultMap id="StudentResultMap" type="com.example.lab1swdev.mybatis.model.Student">
+        <id column="ID" jdbcType="INTEGER" property="id" />
+        <result column="LASTNAME" jdbcType="VARCHAR" property="lastname" />
+        <result column="NAME" jdbcType="VARCHAR" property="name" />
+        <result column="GROUP_ID" jdbcType="INTEGER" property="groupId" />
+        <association property="studygroup" javaType="com.example.lab1swdev.mybatis.model.Studygroup">
+            <id column="ID" jdbcType="INTEGER" property="id" />
+            <result column="NAME" jdbcType="VARCHAR" property="name" />
+        </association>
+        <collection property="electiveCourses" ofType="com.example.lab1swdev.mybatis.model.Electivecourse">
+            <id column="ID" jdbcType="INTEGER" property="id" />
+            <result column="NAME" jdbcType="VARCHAR" property="name" />
+        </collection>
+    </resultMap>
+
+    <select id="selectByGroupId" parameterType="java.lang.Integer" resultMap="StudentResultMap">
+        select ID, LASTNAME, NAME, GROUP_ID from PUBLIC.STUDENT where GROUP_ID = #{groupId,jdbcType=INTEGER}
+    </select>
+</mapper>

@@ -17,9 +17,14 @@
         </environment>
     </environments>
     <mappers>
+        <!-- Generated Mappers -->
         <mapper resource="mybatis.xml/ElectiveCourseMapper.xml"/>
         <mapper resource="mybatis.xml/StudyGroupMapper.xml"/>
         <mapper resource="mybatis.xml/StudentMapper.xml"/>
+
+        <!-- Custom Mappers -->
+        <mapper resource="mybatis.xml/CustomStudygroupMapper.xml"/>
+        <mapper resource="mybatis.xml/CustomStudentMapper.xml"/>
+        <mapper resource="mybatis.xml/CustomElectivecourseMapper.xml"/>
     </mappers>
 </configuration>
-

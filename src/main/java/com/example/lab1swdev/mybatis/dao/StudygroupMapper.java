@@ -43,4 +43,6 @@ public interface StudygroupMapper {
      * @mbg.generated Sun Mar 16 10:54:11 EET 2025
      */
     int updateByPrimaryKey(Studygroup record);
+
+    List<Studygroup> selectAllWithStudents();
 }
