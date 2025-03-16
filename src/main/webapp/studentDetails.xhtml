@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
 <h:head>
     <title>Student Details</title>
 </h:head>
@@ -14,5 +16,14 @@
             <li>#{course.name}</li>
         </ui:repeat>
     </ul>
+
+    <h:form>
+        <h:selectOneMenu value="#{studentDetails.courseToAddId}">
+            <f:selectItems value="#{studentDetails.allCourses}" var="course" itemValue="#{course.id}" itemLabel="#{course.name}" />
+        </h:selectOneMenu>
+        <h:commandButton value="Add Course"
+                         actionListener="#{studentDetails.addCourseToStudent}"
+                         action="#{'studentDetails?faces-redirect=true&amp;studentId='.concat(studentDetails.student.id)}" />
+    </h:form>
 </h:body>
 </html>
