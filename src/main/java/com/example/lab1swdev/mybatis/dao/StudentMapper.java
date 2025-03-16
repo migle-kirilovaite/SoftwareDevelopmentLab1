@@ -1,7 +1,11 @@
 package com.example.lab1swdev.mybatis.dao;
 
 import com.example.lab1swdev.mybatis.model.Student;
+import org.mybatis.cdi.Mapper;
+
 import java.util.List;
+
+@Mapper
 
 public interface StudentMapper {
     /**
