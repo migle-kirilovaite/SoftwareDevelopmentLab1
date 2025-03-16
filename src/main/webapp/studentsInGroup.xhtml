@@ -21,7 +21,7 @@
         <h:inputText a:placeholder="Last Name" value="#{studentsForStudyGroups.studentToCreate.lastName}" required="true" />
         <h:commandButton value="Add student to the studygroup"
                          actionListener="#{studentsForStudyGroups.createStudent}"
-                         action="#{'students?faces-redirect=true&amp;studyGroupId='.concat(studentsForStudyGroups.studyGroup.id)}">
+                         action="#{'studentsInGroup?faces-redirect=true&amp;studyGroupId='.concat(studentsForStudyGroups.studyGroup.id)}">
             <f:param name="studyGroupId" value="#{studentsForStudyGroups.studyGroup.id}" />
         </h:commandButton>
     </h:form>

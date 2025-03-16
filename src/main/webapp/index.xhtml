@@ -9,7 +9,7 @@
     <h2>Study Groups:</h2>
     <ol>
         <ui:repeat value="#{studyGroups.allStudyGroups}" var="studyGroup">
-            <li><h:link value="#{studyGroup.name}" outcome="students?studyGroupId=#{studyGroup.id}" /></li>
+            <li><h:link value="#{studyGroup.name}" outcome="studentsInGroup?studyGroupId=#{studyGroup.id}" /></li>
         </ui:repeat>
     </ol>
     <h:form>
@@ -17,6 +17,7 @@
         <h:commandButton value="Add new study group" actionListener="#{studyGroups.createStudyGroup}" action="index?faces-redirect=true"/>
     </h:form>
     <h:link outcome="myBatis/studyGroups" value="MyBatis implementation"/>
+    <br/>
     <h:link outcome="electiveCourses" value="Go to Course Management"/>
 </h:body>
 </html>
