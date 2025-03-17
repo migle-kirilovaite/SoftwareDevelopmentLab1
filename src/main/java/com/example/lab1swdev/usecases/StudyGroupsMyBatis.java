@@ -1,7 +1,7 @@
 package com.example.lab1swdev.usecases;
 
-import com.example.lab1swdev.mybatis.dao.StudygroupMapper;
 import com.example.lab1swdev.mybatis.model.Studygroup;
+import com.example.lab1swdev.persistence.MyBatisStudyGroupDAO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,8 +13,9 @@ import java.util.List;
 
 @Model
 public class StudyGroupsMyBatis {
+
     @Inject
-    private StudygroupMapper studyGroupMapper;
+    private MyBatisStudyGroupDAO studyGroupDAO;
 
     @Getter
     private List<Studygroup> allStudyGroups;
@@ -28,12 +29,12 @@ public class StudyGroupsMyBatis {
     }
 
     private void loadAllStudyGroups() {
-        this.allStudyGroups = studyGroupMapper.selectAll();
+        this.allStudyGroups = studyGroupDAO.getAllStudyGroups();
     }
 
     @Transactional
     public String createStudyGroup() {
-        studyGroupMapper.insert(studyGroupToCreate);
+        studyGroupDAO.createStudyGroup(studyGroupToCreate);
         return "/myBatis/studyGroups?faces-redirect=true";
     }
 }
