@@ -7,16 +7,16 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "StudyGroup.findAll", query = "SELECT sg FROM StudyGroup sg")
+})
 @Setter @Getter
-@Table(name = "groups")
-public class Group {
+public class StudyGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Basic(optional = false)
-    private String specialty;
-    @Basic(optional = false)
-    private Integer course;
+    private String name;
     @OneToMany(mappedBy = "group")
     private List<Student> students;
 }

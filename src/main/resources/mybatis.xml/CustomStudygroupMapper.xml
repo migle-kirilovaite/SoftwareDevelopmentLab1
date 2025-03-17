@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lab1swdev.mybatis.dao.CustomStudygroupMapper">
+    <resultMap id="StudygroupResultMap" type="com.example.lab1swdev.mybatis.model.Studygroup">
+        <id column="ID" jdbcType="INTEGER" property="id" />
+        <result column="NAME" jdbcType="VARCHAR" property="name" />
+        <collection property="students" ofType="com.example.lab1swdev.mybatis.model.Student">
+            <id column="ID" jdbcType="INTEGER" property="id" />
+            <result column="LASTNAME" jdbcType="VARCHAR" property="lastname" />
+            <result column="NAME" jdbcType="VARCHAR" property="name" />
+            <result column="GROUP_ID" jdbcType="INTEGER" property="groupId" />
+        </collection>
+    </resultMap>
+
+    <select id="selectAllWithStudents" resultMap="StudygroupResultMap">
+        select sg.ID, sg.NAME, st.ID as STUDENT_ID, st.LASTNAME, st.NAME as STUDENT_NAME, st.GROUP_ID
+        from PUBLIC.STUDYGROUP sg
+                 left join PUBLIC.STUDENT st on sg.ID = st.GROUP_ID
+    </select>
+</mapper>

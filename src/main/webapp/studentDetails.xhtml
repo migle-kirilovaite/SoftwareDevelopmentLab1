@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head>
+    <title>Student Details</title>
+</h:head>
+<h:body>
+    <h1>Student: #{studentDetails.student.name} #{studentDetails.student.lastName}</h1>
+    <h2>Study Group: #{studentDetails.studyGroup.name}</h2>
+    <h2>Elective Courses</h2>
+    <ul>
+        <ui:repeat value="#{studentDetails.electiveCourses}" var="course">
+            <li>#{course.name}</li>
+        </ui:repeat>
+    </ul>
+
+    <h:form>
+        <h:selectOneMenu value="#{studentDetails.courseToAddId}">
+            <f:selectItems value="#{studentDetails.allCourses}" var="course" itemValue="#{course.id}" itemLabel="#{course.name}" />
+        </h:selectOneMenu>
+        <h:commandButton value="Add Course"
+                         actionListener="#{studentDetails.addCourseToStudent}"
+                         action="#{'studentDetails?faces-redirect=true&amp;studentId='.concat(studentDetails.student.id)}" />
+    </h:form>
+</h:body>
+</html>

@@ -4,9 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Student.findAll", query = "SELECT s FROM Student s")
+})
 @Setter @Getter
 public class Student {
 
@@ -18,8 +22,7 @@ public class Student {
     @Basic(optional = false)
     private String lastName;
     @ManyToOne
-    private Group group;
-
+    private StudyGroup group;
     @ManyToMany
-    private List<ElectiveCourse> electiveCourses;
+    private List<ElectiveCourse> electiveCourses = new ArrayList<>();
 }
