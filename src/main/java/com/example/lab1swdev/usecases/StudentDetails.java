@@ -69,8 +69,13 @@ public class StudentDetails implements Serializable {
 
         ElectiveCourse courseToAdd = electiveCourseDao.findOne(courseToAddId);
 
-        student.getElectiveCourses().add(courseToAdd);
-        courseToAdd.getStudents().add(student);
+        boolean courseExists = student.getElectiveCourses().stream()
+                .anyMatch(course -> course.getId().equals(courseToAdd.getId()));
 
-        studentsDao.merge(student);}
+        if (!courseExists) {
+            student.getElectiveCourses().add(courseToAdd);
+            courseToAdd.getStudents().add(student);
+            studentsDao.merge(student);
+        }
+    }
 }

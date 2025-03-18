@@ -6,7 +6,7 @@
 >
 <h:head/>
 <h:body>
-    <h2>Study Groups:</h2>
+    <h2>MyBatis study Groups:</h2>
     <ol>
         <ui:repeat value="#{studyGroupsMyBatis.allStudyGroups}" var="studyGroup">
             <li><h:link value="#{studyGroup.name}" outcome="/studentsInGroup?studyGroupId=#{studyGroup.id}" /></li>

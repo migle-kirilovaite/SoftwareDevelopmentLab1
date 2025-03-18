@@ -60,10 +60,10 @@ public class ElectiveCourseEdit implements Serializable {
         ElectiveCourse course = electiveCourseDAO.findOne(selectedCourse.getId());
         Student student = studentsDao.findOne(studentToAddId);
 
-        course.getStudents().add(student);
-        student.getElectiveCourses().add(course);
-
-        electiveCourseDAO.merge(course);
+        if (!course.getStudents().contains(student)) {
+            course.getStudents().add(student);
+            student.getElectiveCourses().add(course);
+        }
     }
 
     @Transactional
@@ -79,8 +79,6 @@ public class ElectiveCourseEdit implements Serializable {
             course.getStudents().remove(student);
             student.getElectiveCourses().remove(course);
         }
-
-        electiveCourseDAO.merge(course);
     }
 
 
